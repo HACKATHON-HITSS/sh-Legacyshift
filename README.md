@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-La URL local por defecto es `http://localhost:4201`. El manifiesto apunta al microfrontend publicado en `https://mf-legacyshift-qjty67525-angelsthar-dev.vercel.app/remoteEntry.json`. Para usar el remoto local, cambia la entrada `template` de `src/public/federation.manifest.json` a `http://localhost:4211/remoteEntry.json`.
+La URL local por defecto es `http://localhost:4201`. El manifiesto apunta al dominio estable de produccion `https://mf-legacyshift-5ill.vercel.app/remoteEntry.json`. Para usar el remoto local, cambia la entrada `template` de `src/public/federation.manifest.json` a `http://localhost:4211/remoteEntry.json`.
 
 ## Build
 
@@ -35,7 +35,7 @@ El resultado estatico se genera en `dist/legacyshift/browser`.
 La shell usa la URL publicada del manifiesto por defecto. `REMOTE_TEMPLATE_URL` permite reemplazarla durante el build:
 
 ```bash
-REMOTE_TEMPLATE_URL=https://mf-legacyshift-qjty67525-angelsthar-dev.vercel.app/remoteEntry.json npm run build
+REMOTE_TEMPLATE_URL=https://mf-legacyshift-5ill.vercel.app/remoteEntry.json npm run build
 ```
 
 El manifiesto final y la Content Security Policy se generan con esa misma URL. Los builds de produccion rechazan remotos `localhost`.
