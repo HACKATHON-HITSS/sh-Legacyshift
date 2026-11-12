@@ -201,14 +201,14 @@ export class DashboardComponent {
       icon: 'metrics',
       items: [
         { path: '/analisis/reglas', label: 'Matriz de reglas de negocio', description: 'Reglas extraídas del código', icon: 'dashboard', route: '/analisis/reglas' },
-        { path: '/analisis/logica', label: 'Lógica y flujos de negocio', description: 'Procesos y comportamiento', icon: 'pull-requests', route: '/analisis/logica' },
-        { path: '/analisis/condiciones', label: 'Condiciones funcionales y técnicas', description: 'Restricciones y validaciones', icon: 'settings', route: '/analisis/condiciones' },
+    /*     { path: '/analisis/logica', label: 'Lógica y flujos de negocio', description: 'Procesos y comportamiento', icon: 'pull-requests', route: '/analisis/logica' }, */
+/*         { path: '/analisis/condiciones', label: 'Condiciones funcionales y técnicas', description: 'Restricciones y validaciones', icon: 'settings', route: '/analisis/condiciones' }, */
         { path: '/analisis/entradas-salidas', label: 'Entradas y salidas', description: 'Contratos y datos intercambiados', icon: 'pull-requests', route: '/analisis/entradas-salidas' },
         { path: '/analisis/datos-hardcodeados', label: 'Datos y valores hardcodeados', description: 'Valores fijos en el código', icon: 'beaker', route: '/analisis/datos-hardcodeados' },
         { path: '/analisis/deuda-tecnica', label: 'Deuda técnica y código innecesario', description: 'Calidad y código en desuso', icon: 'beaker', route: '/analisis/deuda-tecnica' },
         { path: '/analisis/vulnerabilidades', label: 'Vulnerabilidades y riesgos', description: 'Hallazgos de seguridad', icon: 'shield', route: '/analisis/vulnerabilidades' },
-        { path: '/analisis/dependencias', label: 'Dependencias', description: 'Librerías y componentes a migrar', icon: 'repositories', route: '/analisis/dependencias' },
-        { path: '/analisis/arquitectura', label: 'Arquitectura actual y diagramas', description: 'Estructura y relaciones', icon: 'dashboard', route: '/analisis/arquitectura' }
+    /*     { path: '/analisis/dependencias', label: 'Dependencias', description: 'Librerías y componentes a migrar', icon: 'repositories', route: '/analisis/dependencias' }, */
+    /*     { path: '/analisis/arquitectura', label: 'Arquitectura actual y diagramas', description: 'Estructura y relaciones', icon: 'dashboard', route: '/analisis/arquitectura' } */
       ]
     },
     {
@@ -217,11 +217,11 @@ export class DashboardComponent {
       description: 'Validación y destino de migración',
       icon: 'shield',
       items: [
-        { path: '/decisiones/aprobar-reglas', label: 'Revisar y aprobar reglas', description: 'Validación de reglas de negocio', icon: 'shield', route: '/decisiones/aprobar-reglas' },
-        { path: '/decisiones/tecnologia', label: 'Tecnología de destino', description: 'Selección del stack a migrar', icon: 'settings', route: '/decisiones/tecnologia' },
+       /*  { path: '/decisiones/aprobar-reglas', label: 'Revisar y aprobar reglas', description: 'Validación de reglas de negocio', icon: 'shield', route: '/decisiones/aprobar-reglas' }, */
+      /*   { path: '/decisiones/tecnologia', label: 'Tecnología de destino', description: 'Selección del stack a migrar', icon: 'settings', route: '/decisiones/tecnologia' }, */
         { path: '/decisiones/arquitectura', label: 'Arquitectura objetivo', description: 'Diseño de la solución futura', icon: 'dashboard', route: '/decisiones/arquitectura' },
         { path: '/decisiones/chat', label: 'Chat sobre reglas y dudas', description: 'Consulta con el asistente', icon: 'sparkles', route: '/decisiones/chat' },
-        { path: '/decisiones/exportar', label: 'Exportar documentación y matrices', description: 'Entregables del análisis', icon: 'metrics', route: '/decisiones/exportar' }
+    /*     { path: '/decisiones/exportar', label: 'Exportar documentación y matrices', description: 'Entregables del análisis', icon: 'metrics', route: '/decisiones/exportar' } */
       ]
     }
   ];
