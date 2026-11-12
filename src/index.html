@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Legacyshift</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Legacyshift — plataforma de seguridad y calidad para pull requests">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!--
+    BLOQUE CRITICO DE ARRANQUE (V1 CSP: script-src sin 'unsafe-inline')
+    ---------------------------------------------------------------------------
+    Con optimization.styles.inlineCritical en true (valor por defecto), critters
+    reescribe este index.html e inyecta un <style> inline, un <link onload="...">
+    y un <script> inline. Ese script inline es la unica razon por la que la
+    politica de CSP del despliegue necesita 'unsafe-inline' en script-src, y una
+    politica con 'unsafe-inline' no mitiga XSS.
+
+    Desactivando inlineCritical (angular.json) desaparecen los tres. Para no perder
+    el pintado de la pantalla de carga (que ocurre ANTES de que corra Angular) se
+    conserva aqui un bloque <style> critico y estatico, cubierto por un HASH sha256
+    en la CSP en lugar de por 'unsafe-inline'.
+
+    REGLAS DE MANTENIMIENTO IMPORTANTES:
+      1. NO editar sin regenerar el hash: scripts/generate-csp.mjs lo calcula a
+         partir del contenido exacto de este bloque y falla el build si no lo
+         encuentra. El hash es sensible a espacios en blanco.
+      2. No depender de variables externas: este bloque debe ser autocontenido,
+        porque las hojas de estilo se sirven como archivos aparte y todavia no
+        han cargado. El fondo usa un valor literal para evitar saltos de color.
+      3. Estas reglas se duplican a proposito en styles.css. Ahi son necesarias
+         para el <app-loading-screen> que Angular renderiza DESPUES del bootstrap;
+         aqui son necesarias para el HTML estatico previo al bootstrap.
+  -->
+  <style id="csp-critical">
+    html,body{min-height:100%;margin:0}
+    body{background-color:#FFFFFF}
+    #legacyshift-loading-screen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background-color:#F52717}
+    #legacyshift-loading-screen svg{display:block;width:min(220px,100%);height:auto}
+    .loading-logo-accent{transform-box:fill-box;transform-origin:center;animation:loading-logo-pulse 1.4s ease-in-out infinite}
+    .loading-logo-accent-1{animation-delay:0s}
+    .loading-logo-accent-2{animation-delay:.16s}
+    .loading-logo-accent-3{animation-delay:.32s}
+    @keyframes loading-logo-pulse{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
+  </style>
+</head>
+
+<body>
+  <div id="legacyshift-loading-screen" aria-hidden="true">
+    <svg viewBox="0 0 64 64" role="img" aria-label="Legacyshift"><path fill="#fff" d="M32 4 56 14v16c0 14-9.6 25.8-24 30C17.6 55.8 8 44 8 30V14L32 4Zm-4 34 18-18-4.2-4.2L28 29.6l-5.8-5.8L18 28l10 10Z"/></svg>
+  </div>
+  <!--
+  NGINX reemplaza __CSP_NONCE__ por un valor diferente en cada respuesta.
+  Angular utiliza ngCspNonce para aplicarlo a los estilos que inserta
+  dinámicamente.
+-->
+<app-legacyshift-root ngCspNonce="__CSP_NONCE__"></app-legacyshift-root>
+</body>
+
+</html>
