@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-La URL local por defecto es `http://localhost:4201`. Para ejecutar el microfrontend asociado, inicia tambien `mf-PR-Guardian-AI` en su puerto de desarrollo.
+La URL local por defecto es `http://localhost:4201`. El manifiesto apunta al microfrontend publicado en `https://mf-legacyshift-qjty67525-angelsthar-dev.vercel.app/remoteEntry.json`. Para usar el remoto local, cambia la entrada `template` de `src/public/federation.manifest.json` a `http://localhost:4211/remoteEntry.json`.
 
 ## Build
 
@@ -32,10 +32,10 @@ npm run build
 
 El resultado estatico se genera en `dist/legacyshift/browser`.
 
-La shell lee `REMOTE_TEMPLATE_URL` durante el build. Define una URL HTTPS publica cuando el microfrontend se publique en otro host:
+La shell usa la URL publicada del manifiesto por defecto. `REMOTE_TEMPLATE_URL` permite reemplazarla durante el build:
 
 ```bash
-REMOTE_TEMPLATE_URL=https://tu-microfrontend.vercel.app/remoteEntry.json npm run build
+REMOTE_TEMPLATE_URL=https://mf-legacyshift-qjty67525-angelsthar-dev.vercel.app/remoteEntry.json npm run build
 ```
 
 El manifiesto final y la Content Security Policy se generan con esa misma URL. Los builds de produccion rechazan remotos `localhost`.
@@ -47,5 +47,7 @@ El manifiesto final y la Content Security Policy se generan con esa misma URL. L
 3. Crea otro proyecto Vercel con `sh-PR-Guardian-AI` como Root Directory.
 4. En sus variables de entorno de Build, agrega `REMOTE_TEMPLATE_URL` con la URL copiada.
 5. Despliega la shell.
+
+El despliegue del microfrontend debe permitir acceso publico, sin redirigir a login de Vercel. Revisa **Settings > Deployment Protection**: `remoteEntry.json`, los archivos JavaScript y los estilos deben ser accesibles desde el navegador de la shell. Una variable `REMOTE_TEMPLATE_URL` existente en Vercel reemplaza el manifiesto; actualizala o eliminala si apunta a otro despliegue.
 
 La autenticacion actual es local para demostracion. Antes de habilitar usuarios reales, integra un proveedor OIDC publico y valida tokens del lado servidor.
